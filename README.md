@@ -6,7 +6,7 @@ Usage
 
 How to:
 
-      fridump [-h] [-o dir] [-u] [-v] [-r] [-s] [--max-size bytes] process
+      fridump [-h] [-o dir] [-u] [-v] [-r] [-s] [-d] [--max-size bytes] process
 
 The following are the main flags that can be used with fridump:
 
@@ -20,6 +20,7 @@ The following are the main flags that can be used with fridump:
       -v, --verbose      verbose
       -r, --read-only    dump read-only parts of memory. More data, more errors
       -s, --strings      run strings on all dump files. Saved in output dir.
+      -d, --device       device ID
       --max-size bytes   maximum size of dump file in bytes (def: 20971520)
 
 To find the name of a local process, you can use:
