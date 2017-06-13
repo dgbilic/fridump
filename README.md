@@ -6,7 +6,7 @@ Usage
 
 How to:
 
-      fridump [-h] [-o dir] [-u] [-v] [-r] [-s] [-d] [--max-size bytes] process
+      fridump [-h] [-o dir] [-u] [-v] [-r] [-s] [-d device-ID] [--max-size bytes] process
 
 The following are the main flags that can be used with fridump:
 
