@@ -35,6 +35,7 @@ def MENU():
     parser.add_argument('-r','--read-only',action='store_true', help="dump read-only parts of memory. More data, more errors")
     parser.add_argument('-s', '--strings', action='store_true',
                         help='run strings on all dump files. Saved in output dir.')
+    parser.add_argument('-d', '--device', type=str, help='device ID')
     parser.add_argument('--max-size', type=int, help='maximum size of dump file in bytes (def: 20971520)',
                         metavar="bytes")
     args = parser.parse_args()
@@ -52,6 +53,7 @@ DEBUG_LEVEL = logging.INFO
 STRINGS = arguments.strings
 MAX_SIZE = 20971520
 PERMS = 'rw-'
+DEVICE_ID = arguments.device
 
 if arguments.read_only:
     PERMS = 'r--'
@@ -66,7 +68,10 @@ try:
     if USB:
         session = frida.get_usb_device().attach(APP_NAME)
     else:
-        session = frida.attach(APP_NAME)
+        if not DEVICE_ID:
+            session = frida.attach(APP_NAME)
+        else:
+            session = frida.get_device(DEVICE_ID).attach(APP_NAME)
 except:
     print "Can't connect to App. Have you connected the device?"
     sys.exit(0)
